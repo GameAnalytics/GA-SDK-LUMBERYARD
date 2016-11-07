@@ -1,0 +1,78 @@
+
+
+def build(bld):
+    bld.DefineGem(
+        # Add custom build options here
+        includes = [bld.Path('Code/CryEngine/CryAction')],
+		file_list = ['GameAnalytics.waf_files'],
+        pch = '',
+
+		#==============================
+        # Windows
+        #==============================
+        win_includes = [bld.Path('Code/CryEngine/CryAction')],
+        win_x64_debug_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_debug'),
+                                    bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_debug')],
+        win_x64_profile_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release'),
+                                    bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_release')],
+        win_x64_release_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release'),
+                                    bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_release')],
+        win_x64_debug_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_debug'),
+                                            bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_debug')],
+        win_x64_profile_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release'),
+                                                bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_release')],
+        win_x64_release_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release'),
+                                                bld.Path('Code/SDKs/OpenSSL/lib/vc120_x64_release')],
+        win_x64_debug_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurld', 'libboost_filesystem-vc120-mt-gd-1_60', 'libboost_system-vc120-mt-gd-1_60'],
+        win_x64_profile_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurl', 'libboost_filesystem-vc120-mt-1_60', 'libboost_system-vc120-mt-1_60'],
+        win_x64_release_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurl', 'libboost_filesystem-vc120-mt-1_60', 'libboost_system-vc120-mt-1_60'],
+        win_x64_debug_dedicated_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurld', 'libboost_filesystem-vc120-mt-gd-1_60', 'libboost_system-vc120-mt-gd-1_60'],
+        win_x64_profile_dedicated_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurl', 'libboost_filesystem-vc120-mt-1_60', 'libboost_system-vc120-mt-1_60'],
+        win_x64_release_dedicated_lib = ['libeay32', 'ssleay32', 'GameAnalytics', 'libcurl', 'libboost_filesystem-vc120-mt-1_60', 'libboost_system-vc120-mt-1_60'],
+        win_file_list   = ['GameAnalytics_win.waf_files'],
+		win_defines     = ['USE_GAMEANALYTICS=1'],
+
+        #==============================
+        # Mac
+        #==============================
+        darwin_includes = [bld.Path('Code/CryEngine/CryAction')],
+        darwin_x64_debug_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_debug')],
+        darwin_x64_profile_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_release')],
+        darwin_x64_release_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_release')],
+        darwin_x64_debug_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_debug')],
+        darwin_x64_profile_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release')],
+        darwin_x64_release_dedicated_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release')],
+        darwin_x64_debug_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_x64_profile_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_x64_release_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_x64_debug_dedicated_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_x64_profile_dedicated_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_x64_release_dedicated_lib = ['crypto', 'ssl', 'GameAnalytics', 'curl', 'boost_filesystem-mt', 'boost_system-mt'],
+        darwin_file_list   = ['GameAnalytics_mac.waf_files'],
+		darwin_defines     = ['USE_GAMEANALYTICS=1'],
+
+        #==============================
+        # iOS
+        #==============================
+        ios_includes = [bld.Path('Code/CryEngine/CryAction'), bld.Path('Gems/GameAnalytics/Code/Source/iOS')],
+        ios_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/ios_release')],
+        ios_lib = ['GameAnalytics', 'sqlite3', 'z'],
+        ios_framework = ['AdSupport', 'SystemConfiguration'],
+        ios_file_list   = ['GameAnalytics_ios.waf_files'],
+		ios_defines     = ['USE_GAMEANALYTICS=1'],
+
+        #==============================
+        # Android
+        #==============================
+        android_includes = [bld.Path('Code/CryEngine/CryAction'), bld.Path('Gems/GameAnalytics/Code/Source/Android')],
+        android_file_list   = ['GameAnalytics_android.waf_files'],
+		android_defines     = ['USE_GAMEANALYTICS=1'],
+
+        #==============================
+        # Testing
+        #==============================
+        win_x64_test_file_list = ['gameanalytics_tests.waf_files'],
+        darwin_x64_test_file_list = ['gameanalytics_tests.waf_files'],
+        ios_test_file_list = ['gameanalytics_tests.waf_files'],
+        android_test_file_list = ['gameanalytics_tests.waf_files'],
+    )

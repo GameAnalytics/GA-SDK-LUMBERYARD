@@ -1,0 +1,16 @@
+{
+    "auto": {
+        "Include": [
+            "Include/GameAnalytics/GameAnalyticsBus.h"
+        ],
+        "Source/iOS": [
+            "Source/iOS/GameAnalyticsCpp.h",
+            "Source/iOS/GameAnalyticsCpp.mm",
+            "Source/iOS/GameAnalytics.h"
+        ],
+        "Source": [
+            "Source/GameAnalyticsGem.h",
+            "Source/GameAnalyticsGem.cpp"
+        ]
+    }
+}

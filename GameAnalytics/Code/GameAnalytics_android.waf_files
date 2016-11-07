@@ -1,0 +1,15 @@
+{
+    "auto": {
+        "Include": [
+            "Include/GameAnalytics/GameAnalyticsBus.h"
+        ],
+        "Source/Android": [
+            "Source/Android/GameAnalyticsJNI.h",
+            "Source/Android/GameAnalyticsJNI.cpp"
+        ],
+        "Source": [
+            "Source/GameAnalyticsGem.h",
+            "Source/GameAnalyticsGem.cpp"
+        ]
+    }
+}
