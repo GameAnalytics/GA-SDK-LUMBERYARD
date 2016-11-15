@@ -15,5 +15,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 
 Changelog
 ---------
+<!--(CHANGELOG_TOP)-->
+**0.1.1**
+* possible to set custom dimensions and demographics before initialise
+
 **0.1.0**
 * First release

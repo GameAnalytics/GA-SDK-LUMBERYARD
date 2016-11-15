@@ -22,7 +22,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsGem::VERSION = "0.1.0";
+    string const GameAnalyticsGem::VERSION = "0.1.1";
 
     GameAnalyticsGem::GameAnalyticsGem() : CryHooksModule()
     {
