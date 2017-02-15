@@ -5,7 +5,7 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 
 > :information_source:<br>
 >
-> The Lumberyard SDK include support for **iOS**, **Android**, **Windows** and **Mac** platforms
+> The Lumberyard SDK include support for **iOS**, **Android**, **Windows**, **Linux** and **Mac** platforms
 >
 > Requirements:<br/>
 > **Lumberyard:** 1.5.x+  
@@ -16,6 +16,10 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.0**
+* added linux support
+* added os version, device model and device manufacturer to events (windows mac)
+
 **1.0.0**
 * corrected validators in android and ios native libs
 

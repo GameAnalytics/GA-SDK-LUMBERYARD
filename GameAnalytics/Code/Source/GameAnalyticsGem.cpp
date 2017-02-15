@@ -7,7 +7,7 @@
 
 #if USE_GAMEANALYTICS
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
 #include "GameAnalytics.h"
 #elif defined(IOS)
 #include "GameAnalyticsCpp.h"
@@ -22,7 +22,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsGem::VERSION = "1.0.0";
+    string const GameAnalyticsGem::VERSION = "1.1.0";
 
     GameAnalyticsGem::GameAnalyticsGem() : CryHooksModule()
     {
@@ -40,7 +40,7 @@ namespace GameAnalytics
             case ESYSTEM_EVENT_FULL_SHUTDOWN:
             case ESYSTEM_EVENT_FAST_SHUTDOWN:
 #if USE_GAMEANALYTICS
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
                 gameanalytics::GameAnalytics::onStop();
 #endif
 #endif
@@ -63,7 +63,7 @@ namespace GameAnalytics
             dimensions.push_back(dimension.c_str());
         }
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureAvailableCustomDimensions01(dimensions);
 #elif defined(IOS)
         GameAnalyticsCpp::configureAvailableCustomDimensions01(dimensions);
@@ -81,7 +81,7 @@ namespace GameAnalytics
         {
             dimensions.push_back(dimension.c_str());
         }
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureAvailableCustomDimensions02(dimensions);
 #elif defined(IOS)
         GameAnalyticsCpp::configureAvailableCustomDimensions02(dimensions);
@@ -99,7 +99,7 @@ namespace GameAnalytics
         {
             dimensions.push_back(dimension.c_str());
         }
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureAvailableCustomDimensions03(dimensions);
 #elif defined(IOS)
         GameAnalyticsCpp::configureAvailableCustomDimensions03(dimensions);
@@ -117,7 +117,7 @@ namespace GameAnalytics
         {
             currencies.push_back(currency.c_str());
         }
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureAvailableResourceCurrencies(currencies);
 #elif defined(IOS)
         GameAnalyticsCpp::configureAvailableResourceCurrencies(currencies);
@@ -135,7 +135,7 @@ namespace GameAnalytics
         {
             itemTypes.push_back(itemType.c_str());
         }
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureAvailableResourceItemTypes(itemTypes);
 #elif defined(IOS)
         GameAnalyticsCpp::configureAvailableResourceItemTypes(itemTypes);
@@ -148,7 +148,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureBuild(build.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::configureBuild(build.c_str());
@@ -161,7 +161,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureUserId(uId.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::configureUserId(uId.c_str());
@@ -182,7 +182,7 @@ namespace GameAnalytics
         const SFileVersion& fileVersion = gEnv->pSystem->GetFileVersion();
         engineVersion.Format("lumberyard %d.%d.%d", fileVersion[0], fileVersion[1], fileVersion[2]);
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureSdkGameEngineVersion(sdkVersion.c_str());
         gameanalytics::GameAnalytics::configureGameEngineVersion(engineVersion.c_str());
         gameanalytics::GameAnalytics::initialize(gameKey.c_str(), gameSecret.c_str());
@@ -200,7 +200,7 @@ namespace GameAnalytics
     // add events
     void GameAnalyticsGem::AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), NULL);
@@ -228,7 +228,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addResourceEvent(static_cast<gameanalytics::EGAResourceFlowType>(static_cast<int>(flowType)), currency.c_str(), amount, itemType.c_str(), itemId.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::addResourceEvent(static_cast<int>(flowType), currency.c_str(), amount, itemType.c_str(), itemId.c_str());
@@ -239,7 +239,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::addProgressionEvent(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str());
@@ -250,7 +250,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str(), score);
 #elif defined(IOS)
         GameAnalyticsCpp::addProgressionEventWithScore(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str(), score);
@@ -261,7 +261,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddDesignEvent(const string& eventId)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::addDesignEvent(eventId.c_str());
@@ -272,7 +272,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddDesignEventWithValue(const string& eventId, double value)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str(), value);
 #elif defined(IOS)
         GameAnalyticsCpp::addDesignEventWithValue(eventId.c_str(), value);
@@ -283,7 +283,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::AddErrorEvent(EGAErrorSeverity severity, const string& message)
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::addErrorEvent(static_cast<gameanalytics::EGAErrorSeverity>(static_cast<int>(severity)), message.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::addErrorEvent(static_cast<int>(severity), message.c_str());
@@ -296,7 +296,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setEnabledInfoLog(flag);
 #elif defined(IOS)
         GameAnalyticsCpp::setEnabledInfoLog(flag);
@@ -309,7 +309,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setEnabledVerboseLog(flag);
 #elif defined(IOS)
         GameAnalyticsCpp::setEnabledVerboseLog(flag);
@@ -322,7 +322,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setEnabledManualSessionHandling(flag);
 #elif defined(IOS)
         GameAnalyticsCpp::setEnabledManualSessionHandling(flag);
@@ -335,7 +335,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setCustomDimension01(dimension01.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::setCustomDimension01(dimension01.c_str());
@@ -348,7 +348,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setCustomDimension02(dimension02.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::setCustomDimension02(dimension02.c_str());
@@ -361,7 +361,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setCustomDimension03(dimension03.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::setCustomDimension03(dimension03.c_str());
@@ -374,7 +374,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setFacebookId(facebookId.c_str());
 #elif defined(IOS)
         GameAnalyticsCpp::setFacebookId(facebookId.c_str());
@@ -387,7 +387,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setGender(static_cast<gameanalytics::EGAGender>(static_cast<int>(gender)));
 #elif defined(IOS)
         switch(gender)
@@ -409,7 +409,7 @@ namespace GameAnalytics
     {
         LazyInitWritablePath();
 
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::setBirthYear(birthYear);
 #elif defined(IOS)
         GameAnalyticsCpp::setBirthYear(birthYear);
@@ -420,7 +420,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::StartSession()
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::startSession();
 #elif defined(IOS)
         GameAnalyticsCpp::startSession();
@@ -431,7 +431,7 @@ namespace GameAnalytics
 
     void GameAnalyticsGem::EndSession()
     {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::endSession();
 #elif defined(IOS)
         GameAnalyticsCpp::endSession();
@@ -444,7 +444,7 @@ namespace GameAnalytics
     {
         if(!this->isWritablePathInitialised)
         {
-#if defined(DARWIN) || defined(WIN32)
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
             AZStd::string writablePath;
             AzFramework::StringFunc::Path::Join(gEnv->pFileIO->GetAlias("@user@"), "GameAnalytics", writablePath);
             gEnv->pCryPak->MakeDir(writablePath.c_str());
