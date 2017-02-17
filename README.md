@@ -16,6 +16,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.1**
+* added vc140 libs
+
 **1.1.0**
 * added linux support
 * added os version, device model and device manufacturer to events (windows mac)
