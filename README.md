@@ -16,6 +16,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.2**
+* custom user id bug fix
+
 **1.1.1**
 * added vc140 libs
 
