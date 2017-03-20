@@ -16,6 +16,11 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.3**
+* session length precision improvement
+* minor bug fixes
+* updated for Lumberyard v1.8.0
+
 **1.1.2**
 * custom user id bug fix
 
