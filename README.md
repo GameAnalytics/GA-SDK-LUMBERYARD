@@ -16,6 +16,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.4**
+* bug fix for end session when using manual session handling
+
 **1.1.3**
 * session length precision improvement
 * minor bug fixes
