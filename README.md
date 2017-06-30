@@ -25,6 +25,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.5**
+* bug fix for progression events with score for android (android)
+
 **1.1.4**
 * bug fix for end session when using manual session handling
 
