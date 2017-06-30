@@ -25,6 +25,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.7**
+* jni bug fix for progression events with scores (android)
+
 **1.1.6**
 * adding correct files
 
