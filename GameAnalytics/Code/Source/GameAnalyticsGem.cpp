@@ -22,7 +22,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsGem::VERSION = "1.1.5";
+    string const GameAnalyticsGem::VERSION = "1.1.6";
 
     GameAnalyticsGem::GameAnalyticsGem() : CryHooksModule()
     {
@@ -180,7 +180,7 @@ namespace GameAnalytics
 
         string engineVersion;
         const SFileVersion& fileVersion = gEnv->pSystem->GetFileVersion();
-        engineVersion.Format("lumberyard %d.%d.%d", fileVersion[0], fileVersion[1], fileVersion[2]);
+        engineVersion.Format("lumberyard %d.%d.%d", fileVersion.v[3], fileVersion.v[2], fileVersion.v[1]);
 
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
         gameanalytics::GameAnalytics::configureSdkGameEngineVersion(sdkVersion.c_str());
