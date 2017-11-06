@@ -5,33 +5,23 @@ def build(bld):
         # Add custom build options here
         platforms = ['all'],
         includes = [bld.Path('Code/CryEngine/CryAction')],
-		file_list = ['GameAnalytics.waf_files'],
+        file_list = ['gameanalytics.waf_files'],
         pch = '',
 
-		#==============================
+        #==============================
         # Windows
         #==============================
-        win_uselib = ['OPENSSL'],
+        win_uselib = ['OPENSSL', 'GAMEANALYTICS'],
         win_includes = [bld.Path('Code/CryEngine/CryAction')],
-        win_x64_vs2013_debug_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_debug')],
-        win_x64_vs2015_debug_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc140_x64_debug')],
-        win_x64_vs2013_profile_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release')],
-        win_x64_vs2015_profile_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc140_x64_release')],
-        win_x64_vs2013_release_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc120_x64_release')],
-        win_x64_vs2015_release_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/vc140_x64_release')],
-        win_lib = ['GameAnalytics', 'libcurl', 'ole32'],
-        win_file_list   = ['GameAnalytics_win.waf_files'],
-		win_defines     = ['USE_GAMEANALYTICS=1'],
+        win_lib = ['ole32'],
+        win_file_list   = ['gameanalytics_win.waf_files'],
+        win_defines     = ['USE_GAMEANALYTICS=1'],
 
         #==============================
         # Mac
         #==============================
-        darwin_uselib = ['OPENSSL'],
+        darwin_uselib = ['OPENSSL', 'GAMEANALYTICS'],
         darwin_includes = [bld.Path('Code/CryEngine/CryAction')],
-        darwin_x64_debug_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/darwin_x64_debug')],
-        darwin_x64_profile_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/darwin_x64_release')],
-        darwin_x64_release_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/darwin_x64_release')],
-        darwin_x64_lib = ['GameAnalytics', 'curl'],
         darwin_file_list   = ['GameAnalytics_mac.waf_files'],
 		darwin_defines     = ['USE_GAMEANALYTICS=1'],
         darwin_framework = ['CoreFoundation', 'Foundation', 'CoreServices'],
@@ -39,21 +29,18 @@ def build(bld):
         #==============================
         # Linux
         #==============================
-        linux_uselib = ['OPENSSL'],
+        linux_uselib = ['OPENSSL', 'GAMEANALYTICS'],
         linux_includes = [bld.Path('Code/CryEngine/CryAction')],
-        linux_x64_debug_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_debug')],
-        linux_x64_profile_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_release')],
-        linux_x64_release_all_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/linux_x64_release')],
-        linux_x64_lib = ['GameAnalytics', 'curl'],
         linux_file_list   = ['GameAnalytics_linux.waf_files'],
 		linux_defines     = ['USE_GAMEANALYTICS=1'],
 
         #==============================
         # iOS
         #==============================
+        ios_uselib = ['GAMEANALYTICS'],
         ios_includes = [bld.Path('Code/CryEngine/CryAction'), bld.Path('Gems/GameAnalytics/Code/Source/iOS')],
         ios_libpath = [bld.Path('Gems/GameAnalytics/Code/Source/ThirdParty/lib/ios_release')],
-        ios_lib = ['GameAnalytics', 'sqlite3', 'z'],
+        ios_lib = ['sqlite3', 'z'],
         ios_framework = ['AdSupport', 'SystemConfiguration'],
         ios_file_list   = ['GameAnalytics_ios.waf_files'],
 		ios_defines     = ['USE_GAMEANALYTICS=1'],

@@ -65,7 +65,8 @@ namespace GameAnalytics
         Female = 2
     };
 
-    class GameAnalyticsRequests : public AZ::EBusTraits
+    class GameAnalyticsRequests
+        : public AZ::EBusTraits
     {
     public:
         //////////////////////////////////////////////////////////////////////////
@@ -75,8 +76,6 @@ namespace GameAnalytics
         //////////////////////////////////////////////////////////////////////////
 
         // Put your public methods here
-
-        // configure calls should be used before initialize
         virtual void ConfigureAvailableCustomDimensions01(const AZStd::vector<string>& customDimensions) = 0;
         virtual void ConfigureAvailableCustomDimensions02(const AZStd::vector<string>& customDimensions) = 0;
         virtual void ConfigureAvailableCustomDimensions03(const AZStd::vector<string>& customDimensions) = 0;

@@ -1,0 +1,71 @@
+{
+    "name": "gameanalytics",
+    "source": "@GEM@/External/gameanalytics",
+    "description": "GameAnalytics Library",
+    "includes": [
+        "include"
+    ],
+    "defines": [],
+    "lib_required": "True",
+    "platform": {
+        "win_x64_vs2013": {
+            "libpath_debug": [
+                "lib/vc120_x64_debug"
+            ],
+            "libpath_release": [
+                "lib/vc120_x64_release"
+            ],
+            "lib": [
+                "GameAnalytics.lib",
+                "libcurl.lib"
+            ]
+        },
+        "win_x64_vs2015": {
+            "libpath_debug": [
+                "lib/vc140_x64_debug"
+            ],
+            "libpath_release": [
+                "lib/vc140_x64_release"
+            ],
+            "lib": [
+                "GameAnalytics.lib",
+                "libcurl.lib"
+            ]
+        },
+        "linux_x64": {
+            "libpath_debug": [
+                "lib/linux_x64_debug"
+            ],
+            "libpath_release": [
+                "lib/linux_x64_release"
+            ],
+            "lib": [
+                "libGameAnalytics.a",
+                "libcurl.a"
+            ]
+        },
+        "darwin_x64": {
+            "libpath_debug": [
+                "lib/darwin_x64_debug"
+            ],
+            "libpath_release": [
+                "lib/darwin_x64_release"
+            ],
+            "lib": [
+                "libGameAnalytics.a",
+                "libcurl.a"
+            ]
+        },
+        "ios": {
+            "libpath_debug": [
+                "lib/ios_release"
+            ],
+            "libpath_release": [
+                "lib/ios_release"
+            ],
+            "lib": [
+                "libGameAnalytics.a"
+            ]
+        }
+    }
+}
