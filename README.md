@@ -10,7 +10,16 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 > Requirements:<br/>
 > **Lumberyard:** 1.5.x+  
 > **iOS:** iOS 7+<br/>
-> **Android:** Android API Level 14<br>
+> **Android:** Android API Level 14<br>   
+>   
+> **Build size:**   
+> Note that download size differ from the actual build size.   
+>   
+> **Android:**   
+> The SDK build size in a native Android app is only around **49Kb** and the dependecies take up to **820Kb** depending if your app already uses some of the same dependencies.   
+>   
+> **iOS:**   
+> The SDK build size in a native iOS app is only around **242Kb** (armv7) / **259Kb** (armv8).
 
 
 Changelog
@@ -18,6 +27,18 @@ Changelog
 <!--(CHANGELOG_TOP)-->
 **1.1.9**
 * updated for Lumberyard 1.11.1
+
+**1.1.8**
+* JNI memory leak bug fix (android)
+
+**1.1.7**
+* jni bug fix for progression events with scores (android)
+
+**1.1.6**
+* adding correct files
+
+**1.1.5**
+* bug fix for progression events with score for android (android)
 
 **1.1.4**
 * bug fix for end session when using manual session handling
