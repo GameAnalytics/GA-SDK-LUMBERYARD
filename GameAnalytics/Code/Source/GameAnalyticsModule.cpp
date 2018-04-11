@@ -5,6 +5,9 @@
 #include <AzCore/Memory/SystemAllocator.h>
 
 #include "GameAnalyticsSystemComponent.h"
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+#include "GameAnalytics.h"
+#endif
 
 #include <IGem.h>
 
@@ -34,6 +37,19 @@ namespace GameAnalytics
             return AZ::ComponentTypeList{
                 azrtti_typeid<GameAnalyticsSystemComponent>(),
             };
+        }
+    private:
+        void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
+        {
+            switch(event)
+            {
+                case ESYSTEM_EVENT_FAST_SHUTDOWN:
+                case ESYSTEM_EVENT_FULL_SHUTDOWN:
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+                    gameanalytics::GameAnalytics::onQuit();
+#endif
+                    break;
+            }
         }
     };
 }

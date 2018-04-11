@@ -25,6 +25,9 @@ Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYAR
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.10**
+* added onquit function for when closing desktop applications (windows, mac, linux)
+
 **1.1.9**
 * updated for Lumberyard 1.11.1
 
