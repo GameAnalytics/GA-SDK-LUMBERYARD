@@ -1,7 +1,7 @@
 # GA-SDK-LUMBERYARD
 GameAnalytics Lumberyard SDK.
 
-Documentation is in the [wiki](https://github.com/GameAnalytics/GA-SDK-LUMBERYARD/wiki).
+Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk).
 
 > :information_source:<br>
 >
