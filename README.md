@@ -25,6 +25,10 @@ Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk)
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**1.1.11**
+* fixed session length bug
+* fixed not allowing to add events when session is not started
+
 **1.1.10**
 * added onquit function for when closing desktop applications (windows, mac, linux)
 
