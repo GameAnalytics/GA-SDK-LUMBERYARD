@@ -25,6 +25,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk)
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.0.0**
+* added command center functionality
+
 **1.1.12**
 * added custom dimensions to design and error events
 

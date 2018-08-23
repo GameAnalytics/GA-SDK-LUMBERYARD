@@ -41,23 +41,23 @@ namespace GameAnalytics
         void Initialize(const string& gameKey, const string& gameSecret) override;
 
         // add events
-        void AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType) override;
+        void AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/) override;
 #if defined(IOS)
-        void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt) override;
-        void AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType) override;
+        void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt/*, const string& fields*/) override;
+        void AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/) override;
 #elif defined(ANDROID)
-        void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature) override;
+        void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature/*, const string& fields*/) override;
 #endif
 
-        void AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId) override;
+        void AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId/*, const string& fields*/) override;
 
-        void AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03) override;
-        void AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score) override;
+        void AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03/*, const string& fields*/) override;
+        void AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score/*, const string& fields*/) override;
 
-        void AddDesignEvent(const string& eventId) override;
-        void AddDesignEventWithValue(const string& eventId, double value) override;
+        void AddDesignEvent(const string& eventId, const string& fields) override;
+        void AddDesignEventWithValue(const string& eventId, double value/*, const string& fields*/) override;
 
-        void AddErrorEvent(EGAErrorSeverity severity, const string& message) override;
+        void AddErrorEvent(EGAErrorSeverity severity, const string& message/*, const string& fields*/) override;
 
         // set calls can be changed at any time (pre- and post-initialize)
         // some calls only work after a configure is called (setCustomDimension)
@@ -73,6 +73,11 @@ namespace GameAnalytics
 
         void StartSession() override;
         void EndSession() override;
+
+        string GetCommandCenterValueAsString(const string& key) override;
+        string GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue) override;
+        bool IsCommandCenterReady() override;
+        string GetConfigurationsContentAsString() override;
 
         ////////////////////////////////////////////////////////////////////////
         // AZ::Component interface implementation

@@ -84,7 +84,7 @@ void GameAnalyticsCpp::initialize(const char *gameKey, const char *gameSecret)
 {
     NSString *gameKeyString = gameKey != NULL ? @(gameKey) : nil;
     NSString *gameSecretString = gameSecret != NULL ? @(gameSecret) : nil;
-    
+
     [GameAnalytics initializeWithGameKey:gameKeyString gameSecret:gameSecretString];
 }
 
@@ -96,7 +96,7 @@ void GameAnalyticsCpp::addBusinessEvent(const char *currency, int amount, const 
     NSString *itemIdString = itemId != NULL ? @(itemId) : nil;
     NSString *cartTypeString = cartType != NULL ? @(cartType) : nil;
     NSString *receiptString = receipt != NULL ? @(receipt) : nil;
-    
+
     [GameAnalytics addBusinessEventWithCurrency:currencyString
                                          amount:amountInteger
                                        itemType:itemTypeString
@@ -112,7 +112,7 @@ void GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(const char *currency,
     NSString *itemTypeString = itemType != NULL ? @(itemType) : nil;
     NSString *itemIdString = itemId != NULL ? @(itemId) : nil;
     NSString *cartTypeString = cartType != NULL ? @(cartType) : nil;
-    
+
     [GameAnalytics addBusinessEventWithCurrency:currencyString
                                          amount:amountInteger
                                        itemType:itemTypeString
@@ -127,7 +127,7 @@ void GameAnalyticsCpp::addResourceEvent(int flowType, const char *currency, floa
     NSNumber *amountNumber = [NSNumber numberWithFloat:amount];
     NSString *itemTypeString = itemType != NULL ? @(itemType) : nil;
     NSString *itemIdString = itemId != NULL ? @(itemId) : nil;
-    
+
     [GameAnalytics addResourceEventWithFlowType:(GAResourceFlowType)flowType
                                        currency:currencyString
                                          amount:amountNumber
@@ -140,7 +140,7 @@ void GameAnalyticsCpp::addProgressionEvent(int progressionStatus, const char *pr
     NSString *progression01String = progression01 != NULL ? @(progression01) : nil;
     NSString *progression02String = progression02 != NULL ? @(progression02) : nil;
     NSString *progression03String = progression03 != NULL ? @(progression03) : nil;
-    
+
     [GameAnalytics addProgressionEventWithProgressionStatus:(GAProgressionStatus)progressionStatus
                                               progression01:progression01String
                                               progression02:progression02String
@@ -152,7 +152,7 @@ void GameAnalyticsCpp::addProgressionEventWithScore(int progressionStatus, const
     NSString *progression01String = progression01 != NULL ? @(progression01) : nil;
     NSString *progression02String = progression02 != NULL ? @(progression02) : nil;
     NSString *progression03String = progression03 != NULL ? @(progression03) : nil;
-    
+
     [GameAnalytics addProgressionEventWithProgressionStatus:(GAProgressionStatus)progressionStatus
                                               progression01:progression01String
                                               progression02:progression02String
@@ -163,7 +163,7 @@ void GameAnalyticsCpp::addProgressionEventWithScore(int progressionStatus, const
 void GameAnalyticsCpp::addDesignEvent(const char *eventId)
 {
     NSString *eventIdString = eventId != NULL ? @(eventId) : nil;
-    
+
     [GameAnalytics addDesignEventWithEventId:eventIdString value:nil];
 }
 
@@ -171,14 +171,14 @@ void GameAnalyticsCpp::addDesignEventWithValue(const char *eventId, float value)
 {
     NSString *eventIdString = eventId != NULL ? @(eventId) : nil;
     NSNumber *valueNumber = [NSNumber numberWithFloat:value];
-    
+
     [GameAnalytics addDesignEventWithEventId:eventIdString value:valueNumber];
 }
 
 void GameAnalyticsCpp::addErrorEvent(int severity, const char *message)
 {
     NSString *messageString = message != NULL ? @(message) : nil;
-    
+
     [GameAnalytics addErrorEventWithSeverity:(GAErrorSeverity)severity message:messageString];
 }
 
@@ -241,4 +241,29 @@ void GameAnalyticsCpp::startSession()
 void GameAnalyticsCpp::endSession()
 {
     [GameAnalytics endSession];
+}
+
+const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key) {
+    NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
+    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString];
+
+    return result != nil ? [result UTF8String] : NULL;
+}
+
+const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key, const char *defaultValue) {
+    NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
+    NSString *defaultValueString = key != NULL ? [NSString stringWithUTF8String:defaultValue] : nil;
+    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString defaultValue:defaultValue];
+
+    return result != nil ? [result UTF8String] : NULL;
+}
+
+bool GameAnalyticsCpp::isCommandCenterReady() {
+    return [GameAnalytics isCommandCenterReady] ? true : false;
+}
+
+const char* GameAnalyticsCpp::getConfigurationsContentAsString() {
+    NSString *result = [GameAnalytics getCommandCenterConfigurations];
+
+    return result != nil ? [result UTF8String] : NULL;
 }

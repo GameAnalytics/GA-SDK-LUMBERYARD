@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "1.1.12";
+    string const GameAnalyticsSystemComponent::VERSION = "2.0.0";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
@@ -213,97 +213,97 @@ namespace GameAnalytics
     }
 
     // add events
-    void GameAnalyticsSystemComponent::AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType)
+    void GameAnalyticsSystemComponent::AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str());
+        gameanalytics::GameAnalytics::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str()/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), NULL);
+        GameAnalyticsCpp::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), NULL/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str());
+        jni_addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str()/*, fields.c_str()*/);
 #endif
     }
 
 #if defined(IOS)
-    void GameAnalyticsGem::AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt)
+    void GameAnalyticsGem::AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt/*, const string& fields*/)
     {
-        GameAnalyticsCpp::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), receipt.c_str());
+        GameAnalyticsCpp::addBusinessEvent(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), receipt.c_str()/*, fields.c_str()*/);
     }
 
-    void GameAnalyticsGem::AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType)
+    void GameAnalyticsGem::AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/)
     {
-        GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str());
+        GameAnalyticsCpp::addBusinessEventAndAutoFetchReceipt(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str()/*, fields.c_str()*/);
     }
 #elif defined(ANDROID)
-    void GameAnalyticsGem::AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature)
+    void GameAnalyticsGem::AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature/*, const string& fields*/)
     {
-        jni_addBusinessEventWithReceipt(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), receipt.c_str(), "google_play", signature.c_str());
+        jni_addBusinessEventWithReceipt(currency.c_str(), amount, itemType.c_str(), itemId.c_str(), cartType.c_str(), receipt.c_str(), "google_play", signature.c_str()/*, fields.c_str()*/);
     }
 #endif
 
-    void GameAnalyticsSystemComponent::AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId)
+    void GameAnalyticsSystemComponent::AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addResourceEvent(static_cast<gameanalytics::EGAResourceFlowType>(static_cast<int>(flowType)), currency.c_str(), amount, itemType.c_str(), itemId.c_str());
+        gameanalytics::GameAnalytics::addResourceEvent(static_cast<gameanalytics::EGAResourceFlowType>(static_cast<int>(flowType)), currency.c_str(), amount, itemType.c_str(), itemId.c_str()/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addResourceEvent(static_cast<int>(flowType), currency.c_str(), amount, itemType.c_str(), itemId.c_str());
+        GameAnalyticsCpp::addResourceEvent(static_cast<int>(flowType), currency.c_str(), amount, itemType.c_str(), itemId.c_str()/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addResourceEvent(static_cast<int>(flowType), currency.c_str(), amount, itemType.c_str(), itemId.c_str());
+        jni_addResourceEvent(static_cast<int>(flowType), currency.c_str(), amount, itemType.c_str(), itemId.c_str()/*, fields.c_str()*/);
 #endif
     }
 
-    void GameAnalyticsSystemComponent::AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03)
+    void GameAnalyticsSystemComponent::AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str());
+        gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str()/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addProgressionEvent(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str());
+        GameAnalyticsCpp::addProgressionEvent(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str()/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addProgressionEvent(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str());
+        jni_addProgressionEvent(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str()/*, fields.c_str()*/);
 #endif
     }
 
-    void GameAnalyticsSystemComponent::AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score)
+    void GameAnalyticsSystemComponent::AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str(), score);
+        gameanalytics::GameAnalytics::addProgressionEvent(static_cast<gameanalytics::EGAProgressionStatus>(static_cast<int>(progressionStatus)), progression01.c_str(), progression02.c_str(), progression03.c_str(), score/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addProgressionEventWithScore(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str(), score);
+        GameAnalyticsCpp::addProgressionEventWithScore(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str(), score/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addProgressionEventWithScore(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str(), score);
+        jni_addProgressionEventWithScore(static_cast<int>(progressionStatus), progression01.c_str(), progression02.c_str(), progression03.c_str(), score/*, fields.c_str()*/);
 #endif
     }
 
-    void GameAnalyticsSystemComponent::AddDesignEvent(const string& eventId)
+    void GameAnalyticsSystemComponent::AddDesignEvent(const string& eventId/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str());
+        gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str()/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addDesignEvent(eventId.c_str());
+        GameAnalyticsCpp::addDesignEvent(eventId.c_str()/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addDesignEvent(eventId.c_str());
+        jni_addDesignEvent(eventId.c_str()/*, fields.c_str()*/);
 #endif
     }
 
-    void GameAnalyticsSystemComponent::AddDesignEventWithValue(const string& eventId, double value)
+    void GameAnalyticsSystemComponent::AddDesignEventWithValue(const string& eventId, double value/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str(), value);
+        gameanalytics::GameAnalytics::addDesignEvent(eventId.c_str(), value/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addDesignEventWithValue(eventId.c_str(), value);
+        GameAnalyticsCpp::addDesignEventWithValue(eventId.c_str(), value/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addDesignEventWithValue(eventId.c_str(), value);
+        jni_addDesignEventWithValue(eventId.c_str(), value/*, fields.c_str()*/);
 #endif
     }
 
-    void GameAnalyticsSystemComponent::AddErrorEvent(EGAErrorSeverity severity, const string& message)
+    void GameAnalyticsSystemComponent::AddErrorEvent(EGAErrorSeverity severity, const string& message/*, const string& fields*/)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::addErrorEvent(static_cast<gameanalytics::EGAErrorSeverity>(static_cast<int>(severity)), message.c_str());
+        gameanalytics::GameAnalytics::addErrorEvent(static_cast<gameanalytics::EGAErrorSeverity>(static_cast<int>(severity)), message.c_str()/*, fields.c_str()*/);
 #elif defined(IOS)
-        GameAnalyticsCpp::addErrorEvent(static_cast<int>(severity), message.c_str());
+        GameAnalyticsCpp::addErrorEvent(static_cast<int>(severity), message.c_str()/*, fields.c_str()*/);
 #elif defined(ANDROID)
-        jni_addErrorEvent(static_cast<int>(severity), message.c_str());
+        jni_addErrorEvent(static_cast<int>(severity), message.c_str()/*, fields.c_str()*/);
 #endif
     }
 
@@ -434,6 +434,56 @@ namespace GameAnalytics
         GameAnalyticsCpp::endSession();
 #elif defined(ANDROID)
         jni_endSession();
+#endif
+    }
+
+    string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
+    {
+#if defined(LINUX)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str());
+#elif defined(DARWIN) || defined(WIN32)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str()).c_str();
+#elif defined(IOS)
+        return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str());
+#elif defined(ANDROID)
+        return jni_getCommandCenterValueAsString(key.c_str());
+#endif
+    }
+
+    string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
+    {
+#if defined(LINUX)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str());
+#elif defined(DARWIN) || defined(WIN32)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str()).c_str();
+#elif defined(IOS)
+        return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str());
+#elif defined(ANDROID)
+        return jni_getCommandCenterValueAsStringWithDefaultValue(key.c_str(), defaultValue.c_str());
+#endif
+    }
+
+    bool GameAnalyticsSystemComponent::IsCommandCenterReady()
+    {
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+        return gameanalytics::GameAnalytics::isCommandCenterReady();
+#elif defined(IOS)
+        return GameAnalyticsCpp::isCommandCenterReady();
+#elif defined(ANDROID)
+        return jni_isCommandCenterReady();
+#endif
+    }
+
+    string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
+    {
+#if defined(LINUX)
+        return gameanalytics::GameAnalytics::getConfigurationsContentAsString();
+#elif defined(DARWIN) || defined(WIN32)
+        return gameanalytics::GameAnalytics::getConfigurationsContentAsString().c_str();
+#elif defined(IOS)
+        return GameAnalyticsCpp::getConfigurationsContentAsString();
+#elif defined(ANDROID)
+        return jni_getConfigurationsContentAsString();
 #endif
     }
 
@@ -583,6 +633,26 @@ namespace GameAnalytics
     void GameAnalyticsSystemComponent::EndSession()
     {
         CryLog("GameAnalytics::EndSession: platform is not supported");
+    }
+
+    string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
+    {
+        CryLog("GameAnalytics::getCommandCenterValueAsString: platform is not supported");
+    }
+
+    string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
+    {
+        CryLog("GameAnalytics::GetCommandCenterValueAsStringWithDefaultValue: platform is not supported");
+    }
+
+    bool GameAnalyticsSystemComponent::IsCommandCenterReady()
+    {
+        CryLog("GameAnalytics::isCommandCenterReady: platform is not supported");
+    }
+
+    string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
+    {
+        CryLog("GameAnalytics::getConfigurationsContentAsString: platform is not supported");
     }
 
 #endif // USE_GAMEANALYTICS

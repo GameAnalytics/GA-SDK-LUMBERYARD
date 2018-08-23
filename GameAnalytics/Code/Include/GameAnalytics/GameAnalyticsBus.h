@@ -4,6 +4,7 @@
 #include <AzCore/EBus/EBus.h>
 #include <AzCore/std/string/string.h>
 #include <AzCore/std/containers/vector.h>
+#include <AzCore/std/containers/vector.h>
 
 namespace GameAnalytics
 {
@@ -89,23 +90,23 @@ namespace GameAnalytics
         virtual void Initialize(const string& gameKey, const string& gameSecret) = 0;
 
         // add events
-        virtual void AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType) = 0;
+        virtual void AddBusinessEvent(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/) = 0;
 #if defined(IOS)
-        virtual void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt) = 0;
-        virtual void AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType) = 0;
+        virtual void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt/*, const string& fields*/) = 0;
+        virtual void AddBusinessEventWithAutoFetchReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType/*, const string& fields*/) = 0;
 #elif defined(ANDROID)
-        virtual void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature) = 0;
+        virtual void AddBusinessEventWithReceipt(const string& currency, int amount, const string& itemType, const string& itemId, const string& cartType, const string& receipt, const string& signature/*, const string& fields*/) = 0;
 #endif
 
-        virtual void AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId) = 0;
+        virtual void AddResourceEvent(EGAResourceFlowType flowType, const string& currency, float amount, const string&itemType, const string& itemId/*, const string& fields*/) = 0;
 
-        virtual void AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03) = 0;
-        virtual void AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score) = 0;
+        virtual void AddProgressionEvent(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03/*, const string& fields*/) = 0;
+        virtual void AddProgressionEventWithScore(EGAProgressionStatus progressionStatus, const string& progression01, const string& progression02, const string& progression03, int score/*, const string& fields*/) = 0;
 
-        virtual void AddDesignEvent(const string& eventId) = 0;
-        virtual void AddDesignEventWithValue(const string& eventId, double value) = 0;
+        virtual void AddDesignEvent(const string& eventId/*, const string& fields*/) = 0;
+        virtual void AddDesignEventWithValue(const string& eventId, double value/*, const string& fields*/) = 0;
 
-        virtual void AddErrorEvent(EGAErrorSeverity severity, const string& message) = 0;
+        virtual void AddErrorEvent(EGAErrorSeverity severity, const string& message/*, const string& fields*/) = 0;
 
         // set calls can be changed at any time (pre- and post-initialize)
         // some calls only work after a configure is called (setCustomDimension)
@@ -121,6 +122,11 @@ namespace GameAnalytics
 
         virtual void StartSession() = 0;
         virtual void EndSession() = 0;
+
+        virtual string GetCommandCenterValueAsString(const string& key) = 0;
+        virtual string GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue) = 0;
+        virtual bool IsCommandCenterReady() = 0;
+        virtual string GetConfigurationsContentAsString() = 0;
     };
     using GameAnalyticsRequestBus = AZ::EBus<GameAnalyticsRequests>;
 } // namespace GameAnalytics

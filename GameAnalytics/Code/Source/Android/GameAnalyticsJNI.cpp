@@ -960,5 +960,131 @@ namespace GameAnalytics {
                 __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
             }
         }
+
+        const char* jni_getCommandCenterValueAsString(const char *key)
+        {
+            JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
+            jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
+            const char* strMethod = "getCommandCenterValueAsString";
+            std::string result;
+
+            if(jClass)
+            {
+                jmethodID jMethod = env->GetStaticMethodID(jClass, strMethod, "(Ljava/lang/String;)Ljava/lang/String;");
+
+                if(jMethod)
+                {
+                    jstring j_key = env->NewStringUTF(key);
+                    result = env->CallStaticStringMethod(jClass, jMethod, j_key);
+                    env->DeleteLocalRef(j_key);
+                }
+                else
+                {
+                    __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find method %s ***", strMethod);
+                }
+
+                env->DeleteLocalRef(jClass);
+            }
+            else
+            {
+                __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
+            }
+
+            return result.c_str();
+        }
+
+        const char* jni_getCommandCenterValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
+        {
+            JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
+            jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
+            const char* strMethod = "getCommandCenterValueAsString";
+            std::string result;
+
+            if(jClass)
+            {
+                jmethodID jMethod = env->GetStaticMethodID(jClass, strMethod, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
+
+                if(jMethod)
+                {
+                    jstring j_key = env->NewStringUTF(key);
+                    jstring j_defaultValue = env->NewStringUTF(defaultValue);
+                    result = env->CallStaticStringMethod(jClass, jMethod, j_key, j_defaultValue);
+                    env->DeleteLocalRef(j_key);
+                    env->DeleteLocalRef(j_defaultValue);
+                }
+                else
+                {
+                    __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find method %s ***", strMethod);
+                }
+
+                env->DeleteLocalRef(jClass);
+            }
+            else
+            {
+                __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
+            }
+
+            return result.c_str();
+        }
+
+        bool jni_isCommandCenterReady()
+        {
+            JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
+            jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
+            const char* strMethod = "isCommandCenterReady";
+            bool result = false;
+
+            if(jClass)
+            {
+                jmethodID jMethod = env->GetStaticMethodID(jClass, strMethod, "()Z");
+
+                if(jMethod)
+                {
+                    result = env->CallStaticBooleanMethod(jClass, jMethod);
+                }
+                else
+                {
+                    __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find method %s ***", strMethod);
+                }
+
+                env->DeleteLocalRef(jClass);
+            }
+            else
+            {
+                __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
+            }
+
+            return result;
+        }
+
+        const char* jni_getConfigurationsContentAsString()
+        {
+            JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
+            jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
+            const char* strMethod = "getConfigurationsContentAsString";
+            std::string result;
+
+            if(jClass)
+            {
+                jmethodID jMethod = env->GetStaticMethodID(jClass, strMethod, "()Ljava/lang/String;");
+
+                if(jMethod)
+                {
+                    result = env->CallStaticStringMethod(jClass, jMethod);
+                }
+                else
+                {
+                    __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find method %s ***", strMethod);
+                }
+
+                env->DeleteLocalRef(jClass);
+            }
+            else
+            {
+                __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
+            }
+
+            return result.c_str();
+        }
     }
 }
