@@ -25,6 +25,9 @@ Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk)
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**2.0.1**
+* fixed jni compile errors (android)
+
 **2.0.0**
 * added command center functionality
 

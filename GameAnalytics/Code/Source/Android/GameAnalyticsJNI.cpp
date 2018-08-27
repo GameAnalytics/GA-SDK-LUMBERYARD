@@ -975,7 +975,10 @@ namespace GameAnalytics {
                 if(jMethod)
                 {
                     jstring j_key = env->NewStringUTF(key);
-                    result = env->CallStaticStringMethod(jClass, jMethod, j_key);
+                    jstring j_s = (jstring)env->CallStaticObjectMethod(jClass, jMethod, j_key);
+                    const char* s = env->GetStringUTFChars(j_s, 0);
+                    result = s;
+                    env->ReleaseStringUTFChars(j_s, s);
                     env->DeleteLocalRef(j_key);
                 }
                 else
@@ -1008,7 +1011,10 @@ namespace GameAnalytics {
                 {
                     jstring j_key = env->NewStringUTF(key);
                     jstring j_defaultValue = env->NewStringUTF(defaultValue);
-                    result = env->CallStaticStringMethod(jClass, jMethod, j_key, j_defaultValue);
+                    jstring j_s = (jstring)env->CallStaticObjectMethod(jClass, jMethod, j_key, j_defaultValue);
+                    const char* s = env->GetStringUTFChars(j_s, 0);
+                    result = s;
+                    env->ReleaseStringUTFChars(j_s, s);
                     env->DeleteLocalRef(j_key);
                     env->DeleteLocalRef(j_defaultValue);
                 }
@@ -1070,7 +1076,10 @@ namespace GameAnalytics {
 
                 if(jMethod)
                 {
-                    result = env->CallStaticStringMethod(jClass, jMethod);
+                    jstring j_s = (jstring)result = env->CallStaticObjectMethod(jClass, jMethod);
+                    const char* s = env->GetStringUTFChars(j_s, 0);
+                    result = s;
+                    env->ReleaseStringUTFChars(j_s, s);
                 }
                 else
                 {
