@@ -737,6 +737,33 @@ namespace GameAnalytics {
             }
         }
 
+        void jni_setEnabledEventSubmission(bool flag)
+        {
+            JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
+            jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
+            const char* strMethod = "setEnabledEventSubmission";
+
+            if(jClass)
+            {
+                jmethodID jMethod = env->GetStaticMethodID(jClass, strMethod, "(Z)V");
+
+                if(jMethod)
+                {
+                    env->CallStaticVoidMethod(jClass, jMethod, flag);
+                }
+                else
+                {
+                    __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find method %s ***", strMethod);
+                }
+
+                env->DeleteLocalRef(jClass);
+            }
+            else
+            {
+                __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
+            }
+        }
+
         void jni_setCustomDimension01(const char *customDimension)
         {
             JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());

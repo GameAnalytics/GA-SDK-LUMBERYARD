@@ -113,6 +113,7 @@ namespace GameAnalytics
         virtual void SetEnabledInfoLog(bool flag) = 0;
         virtual void SetEnabledVerboseLog(bool flag) = 0;
         virtual void SetEnabledManualSessionHandling(bool flag) = 0;
+        virtual void SetEnabledEventSubmission(bool flag) = 0;
         virtual void SetCustomDimension01(const string& dimension01) = 0;
         virtual void SetCustomDimension02(const string& dimension02) = 0;
         virtual void SetCustomDimension03(const string& dimension03) = 0;

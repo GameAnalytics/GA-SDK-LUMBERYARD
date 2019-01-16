@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "2.0.3";
+    string const GameAnalyticsSystemComponent::VERSION = "2.1.0";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
@@ -337,6 +337,17 @@ namespace GameAnalytics
         GameAnalyticsCpp::setEnabledManualSessionHandling(flag);
 #elif defined(ANDROID)
         jni_setEnabledManualSessionHandling(flag);
+#endif
+    }
+
+    void GameAnalyticsSystemComponent::SetEnabledEventSubmission(bool flag)
+    {
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+        gameanalytics::GameAnalytics::setEnabledEventSubmission(flag);
+#elif defined(IOS)
+        GameAnalyticsCpp::setEnabledEventSubmission(flag);
+#elif defined(ANDROID)
+        jni_setEnabledEventSubmission(flag);
 #endif
     }
 

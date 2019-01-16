@@ -64,6 +64,7 @@ namespace GameAnalytics
         void SetEnabledInfoLog(bool flag) override;
         void SetEnabledVerboseLog(bool flag) override;
         void SetEnabledManualSessionHandling(bool flag) override;
+        void SetEnabledEventSubmission(bool flag) override;
         void SetCustomDimension01(const string& dimension01) override;
         void SetCustomDimension02(const string& dimension02) override;
         void SetCustomDimension03(const string& dimension03) override;
