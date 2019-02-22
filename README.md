@@ -3,6 +3,8 @@ GameAnalytics Lumberyard SDK.
 
 Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk).
 
+If you have any issues or feedback regarding the SDK, please contact our friendly support team [here](https://gameanalytics.com/contact).
+
 > :information_source:<br>
 >
 > The Lumberyard SDK include support for **iOS**, **Android**, **Windows**, **Linux** and **Mac** platforms
