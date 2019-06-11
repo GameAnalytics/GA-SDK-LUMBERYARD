@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "2.1.0";
+    string const GameAnalyticsSystemComponent::VERSION = "2.1.1";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
@@ -450,10 +450,8 @@ namespace GameAnalytics
 
     string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
     {
-#if defined(LINUX)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str());
-#elif defined(DARWIN) || defined(WIN32)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str()).c_str();
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str()).data();
 #elif defined(IOS)
         return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str());
 #elif defined(ANDROID)
@@ -463,10 +461,8 @@ namespace GameAnalytics
 
     string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
     {
-#if defined(LINUX)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str());
-#elif defined(DARWIN) || defined(WIN32)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str()).c_str();
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str()).data();
 #elif defined(IOS)
         return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str());
 #elif defined(ANDROID)
@@ -487,10 +483,8 @@ namespace GameAnalytics
 
     string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
     {
-#if defined(LINUX)
-        return gameanalytics::GameAnalytics::getConfigurationsContentAsString();
-#elif defined(DARWIN) || defined(WIN32)
-        return gameanalytics::GameAnalytics::getConfigurationsContentAsString().c_str();
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+        return gameanalytics::GameAnalytics::getConfigurationsContentAsString().data();
 #elif defined(IOS)
         return GameAnalyticsCpp::getConfigurationsContentAsString();
 #elif defined(ANDROID)
@@ -649,21 +643,25 @@ namespace GameAnalytics
     string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
     {
         CryLog("GameAnalytics::getCommandCenterValueAsString: platform is not supported");
+        return "";
     }
 
     string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
     {
         CryLog("GameAnalytics::GetCommandCenterValueAsStringWithDefaultValue: platform is not supported");
+        return "";
     }
 
     bool GameAnalyticsSystemComponent::IsCommandCenterReady()
     {
         CryLog("GameAnalytics::isCommandCenterReady: platform is not supported");
+        return false;
     }
 
     string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
     {
         CryLog("GameAnalytics::getConfigurationsContentAsString: platform is not supported");
+        return "";
     }
 
 #endif // USE_GAMEANALYTICS
