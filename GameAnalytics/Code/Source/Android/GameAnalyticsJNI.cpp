@@ -988,11 +988,11 @@ namespace GameAnalytics {
             }
         }
 
-        const char* jni_getCommandCenterValueAsString(const char *key)
+        std::string jni_getRemoteConfigsValueAsString(const char *key)
         {
             JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
             jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
-            const char* strMethod = "getCommandCenterValueAsString";
+            const char* strMethod = "getRemoteConfigsValueAsString";
             std::string result;
 
             if(jClass)
@@ -1020,14 +1020,14 @@ namespace GameAnalytics {
                 __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
             }
 
-            return result.c_str();
+            return result;
         }
 
-        const char* jni_getCommandCenterValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
+        std::string jni_getRemoteConfigsValueAsStringWithDefaultValue(const char *key, const char *defaultValue)
         {
             JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
             jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
-            const char* strMethod = "getCommandCenterValueAsString";
+            const char* strMethod = "getRemoteConfigsValueAsString";
             std::string result;
 
             if(jClass)
@@ -1057,14 +1057,14 @@ namespace GameAnalytics {
                 __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
             }
 
-            return result.c_str();
+            return result;
         }
 
-        bool jni_isCommandCenterReady()
+        bool jni_isRemoteConfigsReady()
         {
             JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
             jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
-            const char* strMethod = "isCommandCenterReady";
+            const char* strMethod = "isRemoteConfigsReady";
             bool result = false;
 
             if(jClass)
@@ -1090,11 +1090,11 @@ namespace GameAnalytics {
             return result;
         }
 
-        const char* jni_getConfigurationsContentAsString()
+        std::string jni_getRemoteConfigsContentAsString()
         {
             JNIEnv* env = static_cast<JNIEnv*>(SDL_AndroidGetJNIEnv());
             jclass jClass = env->FindClass(GAMEANALYTICS_CLASS_NAME);
-            const char* strMethod = "getConfigurationsContentAsString";
+            const char* strMethod = "getRemoteConfigsContentAsString";
             std::string result;
 
             if(jClass)
@@ -1120,7 +1120,7 @@ namespace GameAnalytics {
                 __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, "*** Failed to find class %s ***", GAMEANALYTICS_CLASS_NAME);
             }
 
-            return result.c_str();
+            return result;
         }
     }
 }

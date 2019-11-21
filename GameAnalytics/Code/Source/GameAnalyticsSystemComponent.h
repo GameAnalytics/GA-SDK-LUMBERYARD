@@ -75,10 +75,10 @@ namespace GameAnalytics
         void StartSession() override;
         void EndSession() override;
 
-        string GetCommandCenterValueAsString(const string& key) override;
-        string GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue) override;
-        bool IsCommandCenterReady() override;
-        string GetConfigurationsContentAsString() override;
+        string GetRemoteConfigsValueAsString(const string& key) override;
+        string GetRemoteConfigsValueAsStringWithDefaultValue(const string& key, const string& defaultValue) override;
+        bool IsRemoteConfigsReady() override;
+        string GetRemoteConfigsContentAsString() override;
 
         ////////////////////////////////////////////////////////////////////////
         // AZ::Component interface implementation

@@ -124,10 +124,10 @@ namespace GameAnalytics
         virtual void StartSession() = 0;
         virtual void EndSession() = 0;
 
-        virtual string GetCommandCenterValueAsString(const string& key) = 0;
-        virtual string GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue) = 0;
-        virtual bool IsCommandCenterReady() = 0;
-        virtual string GetConfigurationsContentAsString() = 0;
+        virtual string GetRemoteConfigsValueAsString(const string& key) = 0;
+        virtual string GetRemoteConfigsValueAsStringWithDefaultValue(const string& key, const string& defaultValue) = 0;
+        virtual bool IsRemoteConfigsReady() = 0;
+        virtual string GetRemoteConfigsContentAsString() = 0;
     };
     using GameAnalyticsRequestBus = AZ::EBus<GameAnalyticsRequests>;
 } // namespace GameAnalytics

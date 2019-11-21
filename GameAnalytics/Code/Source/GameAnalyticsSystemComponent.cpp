@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "2.1.2";
+    string const GameAnalyticsSystemComponent::VERSION = "3.0.0";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
@@ -448,47 +448,47 @@ namespace GameAnalytics
 #endif
     }
 
-    string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
+    string GameAnalyticsSystemComponent::GetRemoteConfigsValueAsString(const string& key)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str()).data();
+        return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key.c_str()).data();
 #elif defined(IOS)
-        return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str());
+        return GameAnalyticsCpp::getRemoteConfigsValueAsString(key.c_str()).c_str();
 #elif defined(ANDROID)
-        return jni_getCommandCenterValueAsString(key.c_str());
+        return jni_getRemoteConfigsValueAsString(key.c_str()).c_str();
 #endif
     }
 
-    string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
+    string GameAnalyticsSystemComponent::GetRemoteConfigsValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        return gameanalytics::GameAnalytics::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str()).data();
+        return gameanalytics::GameAnalytics::getRemoteConfigsValueAsString(key.c_str(), defaultValue.c_str()).data();
 #elif defined(IOS)
-        return GameAnalyticsCpp::getCommandCenterValueAsString(key.c_str(), defaultValue.c_str());
+        return GameAnalyticsCpp::getRemoteConfigsValueAsString(key.c_str(), defaultValue.c_str()).c_str();
 #elif defined(ANDROID)
-        return jni_getCommandCenterValueAsStringWithDefaultValue(key.c_str(), defaultValue.c_str());
+        return jni_getRemoteConfigsValueAsStringWithDefaultValue(key.c_str(), defaultValue.c_str()).c_str();
 #endif
     }
 
-    bool GameAnalyticsSystemComponent::IsCommandCenterReady()
+    bool GameAnalyticsSystemComponent::IsRemoteConfigsReady()
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        return gameanalytics::GameAnalytics::isCommandCenterReady();
+        return gameanalytics::GameAnalytics::isRemoteConfigsReady();
 #elif defined(IOS)
-        return GameAnalyticsCpp::isCommandCenterReady();
+        return GameAnalyticsCpp::isRemoteConfigsReady();
 #elif defined(ANDROID)
-        return jni_isCommandCenterReady();
+        return jni_isRemoteConfigsReady();
 #endif
     }
 
-    string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
+    string GameAnalyticsSystemComponent::GetRemoteConfigsContentAsString()
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        return gameanalytics::GameAnalytics::getConfigurationsContentAsString().data();
+        return gameanalytics::GameAnalytics::getRemoteConfigsContentAsString().data();
 #elif defined(IOS)
-        return GameAnalyticsCpp::getConfigurationsContentAsString();
+        return GameAnalyticsCpp::getRemoteConfigsContentAsString().c_str();
 #elif defined(ANDROID)
-        return jni_getConfigurationsContentAsString();
+        return jni_getRemoteConfigsContentAsString().c_str();
 #endif
     }
 
@@ -640,27 +640,27 @@ namespace GameAnalytics
         CryLog("GameAnalytics::EndSession: platform is not supported");
     }
 
-    string GameAnalyticsSystemComponent::GetCommandCenterValueAsString(const string& key)
+    string GameAnalyticsSystemComponent::GetRemoteConfigsValueAsString(const string& key)
     {
-        CryLog("GameAnalytics::getCommandCenterValueAsString: platform is not supported");
+        CryLog("GameAnalytics::getRemoteConfigsValueAsString: platform is not supported");
         return "";
     }
 
-    string GameAnalyticsSystemComponent::GetCommandCenterValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
+    string GameAnalyticsSystemComponent::GetRemoteConfigsValueAsStringWithDefaultValue(const string& key, const string& defaultValue)
     {
-        CryLog("GameAnalytics::GetCommandCenterValueAsStringWithDefaultValue: platform is not supported");
+        CryLog("GameAnalytics::GetRemoteConfigsValueAsStringWithDefaultValue: platform is not supported");
         return "";
     }
 
-    bool GameAnalyticsSystemComponent::IsCommandCenterReady()
+    bool GameAnalyticsSystemComponent::IsRemoteConfigsReady()
     {
-        CryLog("GameAnalytics::isCommandCenterReady: platform is not supported");
+        CryLog("GameAnalytics::isRemoteConfigsReady: platform is not supported");
         return false;
     }
 
-    string GameAnalyticsSystemComponent::GetConfigurationsContentAsString()
+    string GameAnalyticsSystemComponent::GetRemoteConfigsContentAsString()
     {
-        CryLog("GameAnalytics::getConfigurationsContentAsString: platform is not supported");
+        CryLog("GameAnalytics::getRemoteConfigsContentAsString: platform is not supported");
         return "";
     }
 

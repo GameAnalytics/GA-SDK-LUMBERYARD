@@ -248,27 +248,27 @@ void GameAnalyticsCpp::endSession()
     [GameAnalytics endSession];
 }
 
-const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key) {
+std::string GameAnalyticsCpp::getRemoteConfigsValueAsString(const char *key) {
     NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
-    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString];
+    NSString *result = [GameAnalytics getRemoteConfigsValueAsString:keyString];
 
-    return result != nil ? [result UTF8String] : NULL;
+    return result != nil ? [result UTF8String] : "";
 }
 
-const char* GameAnalyticsCpp::getCommandCenterValueAsString(const char *key, const char *defaultValue) {
+std::string GameAnalyticsCpp::getRemoteConfigsValueAsString(const char *key, const char *defaultValue) {
     NSString *keyString = key != NULL ? [NSString stringWithUTF8String:key] : nil;
     NSString *defaultValueString = key != NULL ? [NSString stringWithUTF8String:defaultValue] : nil;
-    NSString *result = [GameAnalytics getCommandCenterValueAsString:keyString defaultValue:defaultValue];
+    NSString *result = [GameAnalytics getRemoteConfigsValueAsString:keyString defaultValue:defaultValue];
 
-    return result != nil ? [result UTF8String] : NULL;
+    return result != nil ? [result UTF8String] : "";
 }
 
-bool GameAnalyticsCpp::isCommandCenterReady() {
-    return [GameAnalytics isCommandCenterReady] ? true : false;
+bool GameAnalyticsCpp::isRemoteConfigsReady() {
+    return [GameAnalytics isRemoteConfigsReady] ? true : false;
 }
 
-const char* GameAnalyticsCpp::getConfigurationsContentAsString() {
-    NSString *result = [GameAnalytics getCommandCenterConfigurations];
+std::string GameAnalyticsCpp::getRemoteConfigsContentAsString() {
+    NSString *result = [GameAnalytics getRemoteConfigsConfigurations];
 
-    return result != nil ? [result UTF8String] : NULL;
+    return result != nil ? [result UTF8String] : "";
 }
