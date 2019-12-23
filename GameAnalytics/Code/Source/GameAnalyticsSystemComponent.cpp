@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "3.0.2";
+    string const GameAnalyticsSystemComponent::VERSION = "3.0.3";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
