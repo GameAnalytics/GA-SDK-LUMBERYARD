@@ -60,12 +60,6 @@ namespace GameAnalytics
         Critical = 5
     };
 
-    enum EGAGender
-    {
-        Male = 1,
-        Female = 2
-    };
-
     class GameAnalyticsRequests
         : public AZ::EBusTraits
     {
@@ -83,6 +77,7 @@ namespace GameAnalytics
         virtual void ConfigureAvailableResourceCurrencies(const AZStd::vector<string>& resourceCurrencies) = 0;
         virtual void ConfigureAvailableResourceItemTypes(const AZStd::vector<string>& resourceItemTypes) = 0;
         virtual void ConfigureBuild(const string& build) = 0;
+        virtual void ConfigureAutoDetectAppVersion(bool flag) = 0;
 
         virtual void ConfigureUserId(const string& uId) = 0;
 
@@ -117,9 +112,6 @@ namespace GameAnalytics
         virtual void SetCustomDimension01(const string& dimension01) = 0;
         virtual void SetCustomDimension02(const string& dimension02) = 0;
         virtual void SetCustomDimension03(const string& dimension03) = 0;
-        virtual void SetFacebookId(const string& facebookId) = 0;
-        virtual void SetGender(EGAGender gender) = 0;
-        virtual void SetBirthYear(int birthYear) = 0;
 
         virtual void StartSession() = 0;
         virtual void EndSession() = 0;

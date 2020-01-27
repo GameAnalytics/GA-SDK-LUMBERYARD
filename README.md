@@ -27,6 +27,10 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.0.4**
+* removed facebook, gender and birthyear methods
+* added auto detect app version for build field (ios, android only)
+
 **3.0.3**
 * A/B testing fixes
 

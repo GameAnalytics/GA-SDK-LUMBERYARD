@@ -24,7 +24,7 @@
 
 namespace GameAnalytics
 {
-    string const GameAnalyticsSystemComponent::VERSION = "3.0.3";
+    string const GameAnalyticsSystemComponent::VERSION = "3.0.4";
 
     void GameAnalyticsSystemComponent::Reflect(AZ::ReflectContext* context)
     {
@@ -173,6 +173,16 @@ namespace GameAnalytics
         GameAnalyticsCpp::configureBuild(build.c_str());
 #elif defined(ANDROID)
         jni_configureBuild(build.c_str());
+#endif
+    }
+
+    void GameAnalyticsSystemComponent::ConfigureAutoDetectAppVersion(bool flag)
+    {
+#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
+#elif defined(IOS)
+        GameAnalyticsCpp::configureAutoDetectAppVersion(flag);
+#elif defined(ANDROID)
+        jni_configureAutoDetectAppVersion(flag);
 #endif
     }
 
@@ -384,48 +394,6 @@ namespace GameAnalytics
 #endif
     }
 
-    void GameAnalyticsSystemComponent::SetFacebookId(const string& facebookId)
-    {
-#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::setFacebookId(facebookId.c_str());
-#elif defined(IOS)
-        GameAnalyticsCpp::setFacebookId(facebookId.c_str());
-#elif defined(ANDROID)
-        jni_setFacebookId(facebookId.c_str());
-#endif
-    }
-
-    void GameAnalyticsSystemComponent::SetGender(EGAGender gender)
-    {
-#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::setGender(static_cast<gameanalytics::EGAGender>(static_cast<int>(gender)));
-#elif defined(IOS)
-        switch(gender)
-        {
-            case Male:
-                GameAnalyticsCpp::setGender("male");
-                break;
-
-            case Female:
-                GameAnalyticsCpp::setGender("female");
-                break;
-        }
-#elif defined(ANDROID)
-        jni_setGender(static_cast<int>(gender));
-#endif
-    }
-
-    void GameAnalyticsSystemComponent::SetBirthYear(int birthYear)
-    {
-#if defined(DARWIN) || defined(WIN32) || defined(LINUX)
-        gameanalytics::GameAnalytics::setBirthYear(birthYear);
-#elif defined(IOS)
-        GameAnalyticsCpp::setBirthYear(birthYear);
-#elif defined(ANDROID)
-        jni_setBirthYear(birthYear);
-#endif
-    }
-
     void GameAnalyticsSystemComponent::StartSession()
     {
 #if defined(DARWIN) || defined(WIN32) || defined(LINUX)
@@ -523,6 +491,11 @@ namespace GameAnalytics
         CryLog("GameAnalytics::ConfigureBuild: platform is not supported");
     }
 
+    void GameAnalyticsSystemComponent::ConfigureAutoDetectAppVersion(bool flag)
+    {
+        CryLog("GameAnalytics::ConfigureAutoDetectAppVersion: platform is not supported");
+    }
+
     void GameAnalyticsSystemComponent::ConfigureUserId(const string& uId)
     {
         CryLog("GameAnalytics::ConfigureUserId: platform is not supported");
@@ -613,21 +586,6 @@ namespace GameAnalytics
     void GameAnalyticsSystemComponent::SetCustomDimension03(const string& dimension03)
     {
         CryLog("GameAnalytics::SetCustomDimension03: platform is not supported");
-    }
-
-    void GameAnalyticsSystemComponent::SetFacebookId(const string& facebookId)
-    {
-        CryLog("GameAnalytics::SetFacebookId: platform is not supported");
-    }
-
-    void GameAnalyticsSystemComponent::SetGender(EGAGender gender)
-    {
-        CryLog("GameAnalytics::SetGender: platform is not supported");
-    }
-
-    void GameAnalyticsSystemComponent::SetBirthYear(int birthYear)
-    {
-        CryLog("GameAnalytics::SetBirthYear: platform is not supported");
     }
 
     void GameAnalyticsSystemComponent::StartSession()

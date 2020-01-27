@@ -34,6 +34,7 @@ namespace GameAnalytics
         void ConfigureAvailableResourceCurrencies(const AZStd::vector<string>& resourceCurrencies) override;
         void ConfigureAvailableResourceItemTypes(const AZStd::vector<string>& resourceItemTypes) override;
         void ConfigureBuild(const string& build) override;
+        void ConfigureAutoDetectAppVersion(bool flag) override;
 
         void ConfigureUserId(const string& uId) override;
 
@@ -68,9 +69,6 @@ namespace GameAnalytics
         void SetCustomDimension01(const string& dimension01) override;
         void SetCustomDimension02(const string& dimension02) override;
         void SetCustomDimension03(const string& dimension03) override;
-        void SetFacebookId(const string& facebookId) override;
-        void SetGender(EGAGender gender) override;
-        void SetBirthYear(int birthYear) override;
 
         void StartSession() override;
         void EndSession() override;

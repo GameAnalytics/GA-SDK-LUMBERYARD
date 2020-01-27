@@ -62,6 +62,11 @@ void GameAnalyticsCpp::configureBuild(const char *build)
     [GameAnalytics configureBuild:buildString];
 }
 
+void GameAnalyticsCpp::configureAutoDetectAppVersion(bool flag)
+{
+    [GameAnalytics configureAutoDetectAppVersion:flag];
+}
+
 void GameAnalyticsCpp::configureUserId(const char *userId)
 {
     NSString *userIdString = userId != NULL ? @(userId) : nil;
@@ -218,24 +223,6 @@ void GameAnalyticsCpp::setCustomDimension03(const char *customDimension)
 {
     NSString *customDimensionString = customDimension != NULL ? @(customDimension) : nil;
     [GameAnalytics setCustomDimension03:customDimensionString];
-}
-
-void GameAnalyticsCpp::setFacebookId(const char *facebookId)
-{
-    NSString *facebookIdString = facebookId != NULL ? @(facebookId) : nil;
-    [GameAnalytics setFacebookId:facebookIdString];
-}
-
-void GameAnalyticsCpp::setGender(const char *gender)
-{
-    NSString *genderString = gender != NULL ? @(gender) : nil;
-    [GameAnalytics setGender:genderString];
-}
-
-void GameAnalyticsCpp::setBirthYear(int birthYear)
-{
-    NSInteger birthYearInteger = (NSInteger)birthYear;
-    [GameAnalytics setBirthYear:birthYearInteger];
 }
 
 void GameAnalyticsCpp::startSession()

@@ -15,6 +15,7 @@ namespace GameAnalytics
         extern void jni_configureAvailableResourceItemTypes(const std::vector<std::string>& list);
 
         extern void jni_configureBuild(const char *build);
+        extern void jni_configureAutoDetectAppVersion(bool flag);
         extern void jni_configureSdkGameEngineVersion(const char *gameEngineSdkVersion);
         extern void jni_configureGameEngineVersion(const char *gameEngineVersion);
         extern void jni_configureUserId(const char *userId);
@@ -36,9 +37,6 @@ namespace GameAnalytics
         extern void jni_setCustomDimension01(const char *customDimension);
         extern void jni_setCustomDimension02(const char *customDimension);
         extern void jni_setCustomDimension03(const char *customDimension);
-        extern void jni_setFacebookId(const char *facebookId);
-        extern void jni_setGender(int gender);
-        extern void jni_setBirthYear(int birthYear);
 
         extern void jni_startSession();
         extern void jni_endSession();
