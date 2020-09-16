@@ -3,7 +3,7 @@
     "Uuid": "20e77666d03d4950bad1195511145059",
     "Name": "GameAnalytics",
     "DisplayName": "GameAnalytics",
-    "Version": "3.1.0",
+    "Version": "3.1.1",
     "LinkType": "DynamicStatic",
     "Summary": "GameAnalytics is a free analytics platform that helps game developers understand their players' behaviour by delivering relevant insights.",
     "Tags": ["analytics"],

@@ -27,6 +27,9 @@ If you have any issues or feedback regarding the SDK, please contact our friendl
 Changelog
 ---------
 <!--(CHANGELOG_TOP)-->
+**3.1.1**
+* improved user identifier flow for ios (ios)
+
 **3.1.0**
 * updated user identifier flow to prepare for iOS 14 IDFA changes (ios)
 
