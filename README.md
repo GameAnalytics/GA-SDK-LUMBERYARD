@@ -1,6 +1,9 @@
 # GA-SDK-LUMBERYARD
 GameAnalytics Lumberyard SDK.
 
+> **Warning**
+> This SDK has been deprecated since 25th August 2022 and will not receive further updates. This repository is for legacy purposes only.
+
 Documentation can be found [here](https://gameanalytics.com/docs/lumberyard-sdk).
 
 If you have any issues or feedback regarding the SDK, please contact our friendly support team [here](https://gameanalytics.com/contact).
